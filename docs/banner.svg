@@ -1,0 +1,54 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <radialGradient id="orb1" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#0A84FF" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#0A84FF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0A84FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orb2" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#30D158" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#30D158" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#30D158" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="400" fill="url(#bg)"/>
+
+  <!-- ambient orbs, same signature language as the app itself — soft radial
+       falloff instead of a blur filter, since filter support is inconsistent
+       across SVG sanitizers/renderers (including GitHub's) -->
+  <circle cx="120" cy="80" r="260" fill="url(#orb1)"/>
+  <circle cx="1080" cy="340" r="280" fill="url(#orb2)"/>
+  <circle cx="950" cy="60" r="200" fill="url(#orb1)"/>
+
+  <!-- logomark: three tapering bars, same as the app's real logo -->
+  <g transform="translate(90, 130)">
+    <rect x="0" y="0" width="120" height="21" rx="10.5" fill="white" fill-opacity="0.95"/>
+    <rect x="20" y="36" width="80" height="21" rx="10.5" fill="white" fill-opacity="0.78"/>
+    <rect x="40" y="72" width="40" height="21" rx="10.5" fill="white" fill-opacity="0.6"/>
+  </g>
+
+  <!-- wordmark + tagline -->
+  <text x="90" y="270" font-family="Helvetica, Arial, sans-serif" font-size="52" font-weight="600" fill="white" letter-spacing="-1">
+    Context Toolkit
+  </text>
+  <text x="90" y="308" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#98989D">
+    Send your model exactly what it needs. Nothing else.
+  </text>
+
+  <!-- stat chips -->
+  <g font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="13" fill="#0A84FF">
+    <rect x="90" y="330" width="88" height="30" rx="15" fill="#0A84FF" fill-opacity="0.15"/>
+    <text x="106" y="349">$0 infra</text>
+
+    <rect x="188" y="330" width="96" height="30" rx="15" fill="#30D158" fill-opacity="0.15"/>
+    <text x="204" y="349" fill="#30D158">7 tools</text>
+
+    <rect x="294" y="330" width="150" height="30" rx="15" fill="#0A84FF" fill-opacity="0.15"/>
+    <text x="310" y="349">45 tests passing</text>
+  </g>
+</svg>
