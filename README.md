@@ -26,8 +26,8 @@
 > both light and dark theme. Drop image files into `docs/screenshots/` and reference them below._
 
 ```md
-![Pipeline](docs/screenshots/pipeline)
-![Home](docs/screenshots/home)
+![Home](./docs/screenshots/home.png)
+![Pipeline](./docs/screenshots/pipeline.png)
 ```
 
 **Live demo:** _add your deployed link here once you've followed the deploy steps below_
