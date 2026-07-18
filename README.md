@@ -19,8 +19,6 @@
 
 ---
 
-## Screenshots
-
 Homepage
 ![Home](/docs/screenshots/home.png)
 
