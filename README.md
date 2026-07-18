@@ -21,10 +21,6 @@
 
 ## Screenshots
 
-> _Add your own screenshots here once you've run it locally — see [Getting Started](#getting-started).
-> Recommended: the Pipeline tab mid-run (stage badges lit up), the Home page, and one tool tab in
-> both light and dark theme. Drop image files into `docs/screenshots/` and reference them below._
-
 ```md
 ![Home](./docs/screenshots/home.png)
 ![Pipeline](./docs/screenshots/pipeline.png)
