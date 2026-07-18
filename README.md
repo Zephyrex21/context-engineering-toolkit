@@ -21,13 +21,11 @@
 
 ## Screenshots
 
-#Homepage
+Homepage
 ![Home](/docs/screenshots/home.png)
 
-#Pipeline
-![Pipeline](/docs/screenshots/pipeline.png)
-
-**Live demo:** _add your deployed link here once you've followed the deploy steps below_
+DashBoard
+![Pipeline](/docs/screenshots/dashboard.png)
 
 ---
 
