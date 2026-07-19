@@ -10,6 +10,11 @@
 </p>
 
 <p align="center">
+  <img src="https://github.com/Zephyrex21/context-engineering-toolkit/actions/workflows/tests.yml/badge.svg" alt="Tests" />
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" />
+</p>
+
+<p align="center">
   <a href="#getting-started">Getting Started</a> ·
   <a href="#architecture">Architecture</a> ·
   <a href="#testing">Testing</a> ·
@@ -19,11 +24,18 @@
 
 ---
 
-Homepage
-![Home](/docs/screenshots/home.png)
+## Screenshots
 
-DashBoard
-![Pipeline](/docs/screenshots/dashboard.png)
+![Pipeline](docs/screenshots/pipeline.png)
+*The Pipeline tab mid-run — select → compress → summarize → evaluate, live token count, real reduction %.*
+
+![Home](docs/screenshots/home.png)
+*Homepage — value prop and direct links into every tool.*
+
+![Dashboard](docs/screenshots/dashboard.png)
+*Dashboard — real aggregate stats pulled from actual pipeline runs, not placeholder numbers.*
+
+**Live demo:** _add your deployed link here once you've followed the deploy steps below_
 
 ---
 
@@ -49,8 +61,10 @@ real raw-vs-engineered answer comparison — not an assumed claim.
   rate limit entirely, kept in memory only, never persisted
 - **Light/dark theme**, Apple-inspired design system, fully responsive (sidebar collapses to a
   mobile top bar)
-- **45 automated tests** across every interactive component — real simulated clicks, real state
-  assertions, not just build checks
+- **93 automated tests** (45 frontend DOM-interaction tests, 48 backend unit tests) — real
+  simulated clicks and state assertions on the frontend, real regression coverage on the backend
+  (including a test that reproduces a historical bug on demand to prove the fix holds) — CI runs
+  both suites on every push
 - **Genuinely free to run** — local embeddings, extractive compression, and 5 of 7 tools need zero
   API keys; the rest run on free tiers with no credit card required anywhere in the stack
 
@@ -133,9 +147,13 @@ GEMINI_API_KEY=your-key-here   # free at aistudio.google.com, no card required
 ## Testing
 
 ```bash
-cd client
-npm test          # 45 tests across 14 files, real DOM interaction tests
+cd client && npm test    # 45 tests across 14 files — real DOM interaction tests
+cd server && npm test    # 48 tests across 7 files — chunking, compression, selection,
+                          # dashboard stats, pricing, similarity, tokenization
 ```
+
+93 tests total. CI (`.github/workflows/tests.yml`) runs both suites plus a production build
+check on every push and pull request.
 
 ## Deploying (still $0)
 
@@ -156,6 +174,7 @@ server/
     services/      Core logic — chunking, embeddings, compression, summarization, LLM client, pipeline orchestration
     db/             MongoDB models (optional, graceful no-op if unconfigured)
     middleware/       Rate limiting
+    test/              48 backend unit tests
 
 client/
   src/

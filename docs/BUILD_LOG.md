@@ -424,3 +424,35 @@ All 8 blueprint phases are complete. What's left is genuinely optional:
 - **Screenshots/GIFs in this README** — I can't generate real screenshots of a running dev server myself; capture a few once it's deployed and drop them in above the architecture diagram
 - **Deeper test coverage** — every phase here was verified through targeted testing during development (documented inline above, including 3 real bugs found and fixed), but there's no permanent automated test suite committed to the repo. Worth adding if this keeps evolving.
 - **The one seam I could never verify myself**: the actual network calls to Gemini, Groq, HuggingFace, and MongoDB Atlas — none of those hosts are reachable from my sandbox. Every layer around them is tested for real; the calls themselves are written to the documented APIs but unproven by me. Test them with real credentials before fully trusting this in front of someone else.
+
+---
+
+## Post-review fixes
+
+A self-review rated this project 8/10 as a portfolio piece and 6/10 as "production grade,"
+explicitly not sugarcoated. The gap between those two numbers was the actionable part. What
+changed in response:
+
+- **Added `LICENSE` (MIT)** — the README had claimed a license with no file backing it.
+- **Fixed the screenshot section** — alt text didn't match the actual image (`dashboard.png` was
+  labeled "Pipeline"), and a screenshot (`pipeline.png`) had been added to the repo but never
+  referenced anywhere.
+- **Added 48 backend unit tests** (`server/src/test/`, `npm test` in `server/`) — this was the
+  single largest gap between "good portfolio project" and "production grade": all the rigorous
+  manual testing that happened during the original build (curl scripts, mocked-fetch integration
+  tests) never became an automated, repeatable suite. Now it has: chunking (including a test that
+  deliberately reintroduces the historical `slice(-0)` bug and confirms it fails, proving the
+  regression test actually catches it, not just that it looks plausible), compression, context
+  selection with MMR, dashboard stats aggregation, pricing, and similarity/TF-IDF math.
+- **Added CI** (`.github/workflows/tests.yml`) — runs both the 45 frontend tests and 48 backend
+  tests, plus a production build check, on every push and pull request. Previously tests only ran
+  if someone remembered to run them locally.
+
+Total automated test count: **93**, up from 45.
+
+Still genuinely missing, and worth being honest about rather than claiming otherwise: no
+containerization (Docker), no security middleware (`helmet`), no schema validation library
+(manual validation throughout), no structured logging/observability, and in-memory rate limiting
+that won't survive horizontal scaling. These are real gaps between "very solid demo" and "ready
+for a real production deployment with real users," not just nitpicks — worth tackling if this
+project keeps evolving past a portfolio piece.
